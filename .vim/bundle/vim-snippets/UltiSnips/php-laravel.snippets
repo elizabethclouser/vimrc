@@ -1,0 +1,1165 @@
+#resource controller
+snippet controller "Laravel resource controller" b
+<?php
+
+/**
+ * Laravel Controller
+ * PHP version `!v g:snips_php_version`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+
+namespace App\\`!p
+relpath = os.path.relpath(path)
+e = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`;
+
+use App\Http\Controllers\Admin\Controller;
+use Illuminate\Http\Request;
+use Validator;
+
+/**
+ * Class `!p snip.rv = snip.basename`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+class `!p snip.rv = snip.basename` extends ${1:Controller}
+{
+	/**
+	 * ${2:undocumented function}
+	 *
+	 * @author `!v g:snips_author`
+	 * @return \Illuminate\View\View
+	 */
+    public function index() : \Illuminate\View\View
+	{
+		return view('model.index');
+    }
+    
+	/**
+	 * ${3:undocumented function}
+	 *
+	 * @author `!v g:snips_author`
+	 * @return \Illuminate\View\View
+	 */
+    public function create() : \Illuminate\View\View
+	{
+		return view('model.create');
+    }
+    
+	/**
+	 * ${4:undocumented function}
+	 *
+	 * @param \Illuminate\Http\Request $request with new Model data
+	 *
+	 * @author `!v g:snips_author`
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+    public function store(Request $request) : \Illuminate\Http\JsonResponse
+	{
+		$rules = [
+			//
+		];
+
+		$validator = Validator::make($request->all(), $rules);
+
+		if ($validator->fails()) {
+			return $this->errorMsg($validator->errors()->first());
+		}
+
+		$data = $request->only(array_keys($rules));
+		Model::create($data);
+
+		return response()->json(
+			[
+				'success'     => true,
+				'somethingID' => $somethingID,
+			]
+		);
+    }
+    
+	/**
+	 * ${6:undocumented function}
+	 *
+	 * @param int $id references models.id
+	 *
+	 * @author `!v g:snips_author`
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+    public function show(int $id) : \Illuminate\View\View
+	{
+		$model = Model::get();
+
+		return view('model.show', compact($model));
+    }
+    
+	/**
+	 * ${8:undocumented function}
+	 *
+	 * @param int $id references models.id
+	 *
+	 * @author `!v g:snips_author`
+	 * @return \Illuminate\View\View
+	 */
+    public function edit(int $id) : \Illuminate\View\View
+	{
+		$model = Model::find($id);
+
+		return view('model.edit', compact($model));
+    }
+    
+	/**
+	 * ${10:undocumented function}
+	 *
+	 * @param \Illuminate\Http\Request $request with Model updates
+	 * @param int                      $id      references models.id
+	 *
+	 * @author `!v g:snips_author`
+	 * @return \Illuminate\View\View
+	 */
+    public function update(Request $request, int $id) : \Illuminate\Http\JsonResponse
+	{
+		$rules = [
+			//
+		];
+
+		$validator = Validator::make($request->all(), $rules);
+
+		if ($validator->fails()) {
+			return $this->errorMsg($validator->errors()->first());
+		}
+
+		$data = $request->only(array_keys($rules));
+
+		$model = Model::find($id);
+		$model->update($data);
+
+		return response()->json(
+			[
+				'success' => true,
+				'modelID' => $model->id,
+			]
+		);
+    }
+    
+	/**
+	 * ${13:undocumented function}
+	 *
+	 * @param int $id references models.id
+	 *
+	 * @author `!v g:snips_author`
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+    public function destroy(int $id) : \Illuminate\Http\JsonResponse
+	{
+		$model = Model::find($id);
+		$model->delete();
+
+		return response()->json(
+			[
+				'success' => true,
+				'modelID' => $model->id,
+			]
+		);
+    }
+}
+endsnippet
+
+#service service provider
+snippet serviceprovider "Laravel service provider for service" b
+<?php
+
+/**
+ * Laravel Service Provider
+ * PHP version `!v g:snips_php_version`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+
+namespace App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`;
+
+use Illuminate\Support\ServiceProvider;
+
+/**
+ * Class `!p snip.rv = snip.basename`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+class `!p snip.rv = snip.basename` extends ServiceProvider
+{
+	/**
+	 * Bootstrap the application services.
+	 *
+	 * @author Elizabeth Clouser <elizabeth@bonkstudios.com>
+	 * @return void
+	 */
+	public function boot()
+	{
+		/*Storage::extend(
+			'sftp',
+			function ($app, $config) {
+				return new Filesystem(new SftpAdapter($config));
+			}
+		);*/
+	}
+
+	/**
+	 * Register the application services.
+	 *
+	 * @author Elizabeth Clouser <elizabeth@bonkstudios.com>
+	 * @return void
+	 */
+	public function register()
+	{
+		/*$this->app->bind(
+			'survey', 
+			function() {
+				return new SurveyMonkey;
+			}
+		);*/
+	}
+}
+endsnippet
+
+#repository service provider
+snippet l_rsp "Laravel service provider for repository" b
+<?php
+
+/*!
+ * \namespace   $2
+ * \class       $3
+ *
+ * \author      ${4:`!v g:snips_author`}
+ * \date        `!v strftime('%d-%m-%y')`
+ */
+
+namespace ${2:Repositories\\${1:}};
+
+use Entities\\$1;
+use $2\\$1Repository;
+use Illuminate\Support\ServiceProvider;
+
+class ${3:`!v expand('%:t:r')`} extends ServiceProvider {
+    /*!
+     * \var     defer
+     * \brief   Defer service
+     */
+    protected $defer = ${5:true};
+
+    public function register() {
+        $this->app->bind('$2\\$1Interface', function($app) {
+            return new $1Repository(new $1());
+        });
+    }
+
+    /*!
+     * \brief   If $defer == true need this fn
+     */ 
+    public function provides() {
+        return ['$2\\$1Interface'];
+    }
+}
+endsnippet
+
+#model
+snippet model "Laravel simple model" b
+<?php
+
+/**
+ * Laravel Model 
+ * PHP version `!v g:snips_php_version`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+
+namespace App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`;
+
+/**
+ * Class `!p snip.rv = snip.basename`
+ *
+ * @category $2App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+class `!p snip.rv = snip.basename` extends BaseModel
+{
+	/** 
+	 * Allow mass assignment for all except these
+	 * 
+	 * @author `!v g:snips_author`
+	 * @var    array 
+	 */
+    protected $guarded = ['id'];
+}
+endsnippet
+
+#abstract repository
+snippet l_ar "Laravel abstract Repository" b
+<?php
+
+/*!
+ * \namespace   $1
+ * \class       $2
+ * \implements  $3
+ *
+ * \author      ${4:`!v g:snips_author`}
+ * \date        `!v strftime('%d-%m-%y')`
+ */
+
+namespace ${1:Repositories};
+
+use Illuminate\Database\Eloquent\Model;
+
+abstract class ${2:`!v expand('%:t:r')`} implements ${3:BaseRepositoryInterface} {
+    protected $model;
+
+    /*!
+     * \fn      __construct
+     *
+     * \brief   Take the model
+     */
+
+    public function __construct(Model $model) {
+        $this->model = $model;
+    }
+
+    /*!
+     * \fn      all
+     *
+     * \return  Illuminate\Database\Eloquent\Collection
+     */
+    public function all($columns = ['*']) {
+        return $this->model->all()->toArray();
+    }
+
+    /*!
+     * \fn      create
+     *
+     * \return  Illuminate\Database\Eloquent\Model
+     */
+    public function create(array $attributes) {
+        return $this->model->create($attributes);
+    }
+
+    /*!
+     * \fn      destroy
+     *
+     * \return  int
+     */
+    public function destroy($ids) {
+        return $this->model->destroy($ids);
+    }
+
+    /*!
+     * \fn      find
+     *
+     * \return  mixed
+     */
+    public function find($id, $columns = ['*']) {
+        return $this->model->find($id, $columns);
+    }
+}
+endsnippet
+
+#repository
+snippet l_r "Laravel Repository" b
+<?php
+
+/*!
+ * \namespace   $1
+ * \class       $3
+ * \implements  $4
+ *
+ * \author      ${5:`!v g:snips_author`}
+ * \date        `!v strftime('%d-%m-%y')`
+ */
+
+namespace ${1:Repositories\\$2};
+
+class ${3:`!v expand('%:t:r')`} extends \\$6 implements ${4:$3RepositoryInterface} {
+    $7
+}
+endsnippet
+
+#service
+snippet l_s "Laravel Service" b
+<?php
+
+/*!
+ * \namespace   $1
+ * \class       $2
+ *
+ * \author      ${6:`!v g:snips_author`}
+ * \date        `!v strftime('%d-%m-%y')`
+ */
+
+namespace Services\\$1;
+
+use ${3:Repositories\\${4:Interface}};
+
+class ${2:`!v expand('%:t:r')`} {
+    protected $${5:repo};
+    
+    /*!
+     * \fn      __construct
+     */
+    public function __construct($4 $repo) {
+        $this->$5 = $repo;
+    }
+}
+endsnippet
+
+#facade
+snippet facade "Laravel Facade" b
+<?php
+
+/**
+ * Laravel Facade 
+ * PHP version `!v g:snips_php_version`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+
+namespace App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`;
+
+use \Illuminate\Support\Facades\Facade;
+
+/**
+ * Class `!p snip.rv = snip.basename`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+class `!p snip.rv = snip.basename` extends Facade
+{
+    /**
+	 * Get the registered name of the component.
+     *
+	 * @author `!v g:snips_author`
+     * @return string
+     */
+    protected static function getFacadeAccessor() : string
+	{ 
+		return '$1'; 
+	}
+}
+endsnippet
+
+snippet command
+<?php
+
+/**
+ * Laravel Artisan Command 
+ * PHP version `!v g:snips_php_version`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+
+namespace App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`;
+
+use Illuminate\Console\Command;
+
+/**
+ * Class `!p snip.rv = snip.basename`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+class `!p snip.rv = snip.basename` extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+	 * @author `!v g:snips_author`
+     * @var    string
+     */
+    protected $signature = '$1';
+
+    /**
+     * The console command description.
+     *
+	 * @author `!v g:snips_author`
+     * @var    string
+     */
+    protected $description = '$2';
+
+    /**
+     * Create a new command instance.
+     *
+	 * @author `!v g:snips_author`
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+	 * @author `!v g:snips_author`
+     * @return void
+     */
+    public function handle()
+    {
+		$3
+    }
+}
+endsnippet
+
+snippet event
+<?php
+
+/**
+ * Laravel Event 
+ * PHP version `!v g:snips_php_version`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+
+namespace App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`;
+
+//use Illuminate\Broadcasting\Channel;
+use Illuminate\Queue\SerializesModels;
+//use Illuminate\Broadcasting\PrivateChannel;
+//use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Broadcasting\InteractsWithSockets;
+//use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+
+/**
+ * Class `!p snip.rv = snip.basename`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+class `!p snip.rv = snip.basename`
+{
+    use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    /**
+     * Create a new event instance.
+     *
+     * @param \App\Models\Model $model 
+     *
+	 * @author `!v g:snips_author`
+     * @return void
+     */
+    public function __construct(Model $model)
+    {
+		$1
+    }
+
+    /**
+     * Get the channels the event should broadcast on.
+     *
+	 * @author `!v g:snips_author`
+     * @return \Illuminate\Broadcasting\Channel|array
+     */
+    public function broadcastOn()
+    {
+        //return new PrivateChannel('channel-name');
+    }
+}
+endsnippet
+
+snippet listener
+<?php
+
+/**
+ * Laravel Listener 
+ * PHP version `!v g:snips_php_version`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+
+namespace App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`;
+
+/**
+ * Class `!p snip.rv = snip.basename`
+ *
+ * @category $2App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+class `!p snip.rv = snip.basename`
+{
+    /**
+     * Create the event listener.
+     *
+	 * @author `!v g:snips_author`
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Handle the event.
+     *
+     * @param \App\Events\OrderShipped $event triggered
+ 	 *
+	 * @author `!v g:snips_author`
+     * @return void
+     */
+    public function handle(OrderShipped $event)
+    {
+		$1
+    }
+}
+endsnippet
+
+snippet job
+endsnippet
+
+snippet observer
+<?php
+
+/**
+ * Laravel Observer
+ * PHP version `!v g:snips_php_version`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+
+namespace App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`;
+
+use App\Model;
+
+/**
+ * Class `!p snip.rv = snip.basename`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+class `!p snip.rv = snip.basename`
+{
+    /**
+     * Handle the Model "saved" event.
+     *
+     * @param \App\Model $model being saved
+	 *
+	 * @author `!v g:snips_author`
+     * @return void
+     */
+    public function saved(Model $model)
+    {
+        $1
+    }
+}
+endsnippet
+
+snippet viewcomposer
+<?php
+
+/**
+ * Laravel View Composer
+ * PHP version `!v g:snips_php_version`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+
+namespace App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`;
+
+use Illuminate\View\View;
+
+/**
+ * Class `!p snip.rv = snip.basename`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+class `!p snip.rv = snip.basename`
+{
+    /**
+     * Bind data to the view.
+
+     * @param \Illuminate\View\View $view rendering
+     *
+	 * @author `!v g:snips_author`
+	 * @return \Illuminate\View\View
+     */
+    public function compose(View $view) : \Illuminate\View\View
+    {
+		$data = [];
+
+        $view->with('$1', $data);
+    }
+}
+endsnippet
+
+snippet exception
+<?php
+
+/**
+ * Laravel Custom Exception
+ * PHP version `!v g:snips_php_version`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+
+namespace App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`;
+
+use App\Services\SlackNotifier;
+use Exception;
+use Log;
+
+/**
+ * Class `!p snip.rv = snip.basename`
+ *
+ * @category App\\`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+class `!p snip.rv = snip.basename` extends Exception
+{
+	/**
+	  Render an exception into an HTTP response.
+	 *
+	 * @param \Illuminate\Http\Request $request   made
+	 * @param \Exception               $exception thrown
+	 *
+	 * @author `!v g:snips_author`
+	 * @return \Illuminate\Http\Response
+	 */
+	public function render(Request $request, Exception $exception) : 
+		\Illuminate\Http\Response
+	{
+		//
+	}
+
+    /**
+     * Report or log an exception.
+     *
+     * @param \Exception $exception thrown
+     *
+	 * @author `!v g:snips_author`
+     * @return void
+     */
+    public function report(Exception $exception)
+    {
+        $errorType = 'Purchase Order Request Transmission Error';
+        Log::error("{$errorType}: {$exception->getMessage()}");
+
+        $slack = new SlackNotifier();
+        $slack->send(
+            $errorType,
+            [
+                'title' => $exception->getMessage(),
+                'text'  => '',
+            ],
+            null,
+            'general'
+        );
+    }
+}
+endsnippet
+
+snippet config
+<?php
+
+/**
+ * Laravel Config File
+ * PHP version `!v g:snips_php_version`
+ *
+ * @category Config
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+
+return [
+	$1	
+];
+endsnippet
+
+snippet migration
+<?php
+
+/**
+ * Laravel Database Migration
+ * PHP version `!v g:snips_php_version`
+ *
+ * @category Database\Migrations
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+/**
+ * Class `!p snip.rv = snip.basename`
+ *
+ * @category Database\Migrations
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+class `!p snip.rv = snip.basename` extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+	 * @author `!v g:snips_author`
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create(
+            '${1:purchase_order_responses}',
+            function (Blueprint $table) {
+                $table->increments('id');
+
+				$2
+
+                $table->timestamps();
+            }
+        );
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+	 * @author `!v g:snips_author`
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('${3:purchase_order_responses}');
+    }
+}
+endsnippet
+
+snippet seeder
+<?php
+
+/**
+ * Laravel Database Seeder
+ * PHP version `!v g:snips_php_version`
+ *
+ * @category Database\Factories
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+
+use Illuminate\Database\Seeder;
+
+/**
+ * Class `!p snip.rv = snip.basename`
+ *
+ * @category Database\Factories
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+class `!p snip.rv = snip.basename` extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+	 * @author `!v g:snips_author`
+     * @return void
+     */
+    public function run()
+    {
+		DB::table('${2:purchase_order_statuses}')->insert(
+			[
+				$2
+			]
+		);
+    }
+}
+endsnippet
+
+snippet factory
+<?php
+
+/**
+ * Laravel Database Factory
+ * PHP version `!v g:snips_php_version`
+ *
+ * @category Database\Factories
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+
+$factory->define(
+	App\Models\\${1:Model}::class, 
+	function (Faker\Generator $faker) {
+		return [
+			$2
+		];
+	}
+);
+endsnippet
+
+snippet test
+<?php
+
+/**
+ * PHPUnit Test
+ * PHP version `!v g:snips_php_version`
+ *
+ * @category Tests\Unit
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+
+namespace Tests\Unit;
+
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+/**
+ * Class `!p snip.rv = snip.basename`
+ *
+ * @category Tests\Unit
+ * @package  `!v g:snips_package`
+ * @author   `!v g:snips_author`
+ * @license  `!v g:snips_license`
+ * @link     `!v g:snips_link`
+ */
+class `!p snip.rv = snip.basename` extends TestCase
+{
+    /**
+     * ${1:undocumented method}
+     *
+	 * @author `!v g:snips_author`
+     * @return void
+     */
+    public function test${2:Something}()
+    {
+		$3
+    }
+}
+endsnippet

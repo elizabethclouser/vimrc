@@ -8,22 +8,20 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'mattn/emmet-vim'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'StanAngeloff/php.vim'
+"Plugin 'StanAngeloff/php.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'kien/ctrlp.vim'
 Plugin 'arnaud-lb/vim-php-namespace'
 
 call vundle#end()            
 filetype plugin indent on    
 
-au BufRead *.blade.php set ft=blade.html.js.javascript
-au BufNewFile *.blade.php set ft=blade.html.js.javascript
-
 au BufRead *.php set ft=php.php-laravel
 au BufNewFile *.php set ft=php.php-laravel
+
+au BufRead *.blade.php set ft=blade.html
+au BufNewFile *.blade.php set ft=blade.html
 
 au BufRead *.vue set ft=js.javascript
 au BufNewFile *.vue set ft=js.javascript
@@ -44,6 +42,7 @@ set relativenumber
 set history=3  
 set ruler	  
 set incsearch 
+set wildignorecase
 set wildignore+=*/node_modules/*,*/vendor/*,*/.git/*,*/public/*,*/vagrant/*,*/bower_components/*,*/docs/*,*/libs/*,*/.idea/*,*/firebase_push/*,*/bootstrap/*,*/scripts/*
 
 "---Theme---"
@@ -128,3 +127,6 @@ if $VIM_ENV == 'staging'
     "-- When you need to save a file and don't have ownership, but can sudo --"
     nmap <Leader>w :w !sudo tee %<cr>
 endif
+
+"-- Search --"
+nmap <C-p> :e **/

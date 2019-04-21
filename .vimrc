@@ -9,10 +9,10 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'vim-syntastic/syntastic'
-"Plugin 'StanAngeloff/php.vim'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'scrooloose/nerdcommenter'
+Plugin 'StanAngeloff/php.vim'
 Plugin 'arnaud-lb/vim-php-namespace'
+Plugin 'scrooloose/nerdcommenter' 
+Plugin 'kien/ctrlp.vim'
 
 call vundle#end()            
 filetype plugin indent on    
@@ -38,11 +38,13 @@ set smartindent
 set autoread
 set number
 set relativenumber
-"set backspace=indent,eol,start 
+set hlsearch
 set history=3  
 set ruler	  
 set incsearch 
 set wildignorecase
+set path+=**
+set wildmenu
 set wildignore+=*/node_modules/*,*/vendor/*,*/.git/*,*/public/*,*/vagrant/*,*/bower_components/*,*/docs/*,*/libs/*,*/.idea/*,*/firebase_push/*,*/bootstrap/*,*/scripts/*
 
 "---Theme---"
@@ -87,7 +89,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-let g:snips_author = "Elizabeth Clouser <elizabeth@bonkstudios.com>"
+let g:snips_author = "Elizabeth Clouser <elizabeth@somepage.com>"
 let g:snips_package = "InsomniaCookies"
 let g:snips_license = "https://insomniacookies.com "
 let g:snips_link = "https://insomniacookies.com"
@@ -95,14 +97,14 @@ let g:snips_php_version = "7.1"
 
 "-- Syntastic Setup --"
 let g:syntastic_php_checkers = ['phpcs', 'phpmd']
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = []
 let g:syntastic_html_checkers = []
 
 "-- Laravel Specific Key Mappings --"
-nmap <Leader><Leader>v :e resources/views<cr>
-nmap <Leader><Leader>a :e resources/assets<cr>
-nmap <Leader><Leader>c :e app/Http/Controllers<cr>
-nmap <Leader><Leader>r :e routes<cr>
+nmap <Leader><Leader>v :edit resources/views<cr>
+nmap <Leader><Leader>a :edit resources/assets<cr>
+nmap <Leader><Leader>c :edit app/Http/Controllers<cr>
+nmap <Leader><Leader>r :edit routes<cr>
 nmap <Leader>l :e storage/logs/laravel.log<cr>
 
 "Make it easy to edit the Vim config files"
@@ -114,19 +116,48 @@ function! IPhpInsertUse()
     call feedkeys('a',  'n')
 endfunction
 
-autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
-autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
-
-let g:php_namespace_sort_after_insert = 1
-set tags+=tags,tags.vendors
-
-"-- Emmet Setup --"
-let g:user_emmet_leader_key='<Leader>'
+"set tags+=tags,tags.vendors
 
 if $VIM_ENV == 'staging'
     "-- When you need to save a file and don't have ownership, but can sudo --"
     nmap <Leader>w :w !sudo tee %<cr>
 endif
 
-"-- Search --"
-nmap <C-p> :e **/
+"-- Tabs --"
+map <C-t>l :tabn<cr>
+map <C-t>h :tabp<cr>
+
+"-- NetRW --"
+let g:netrw_banner=0
+let g:netrw_altv=1
+
+"-- External Commands --"
+nmap <Leader>db :! mysql -u root -psecret<cr>
+nmap <Leader>tink :! php artisan tinker<cr>
+nmap <Leader>sh :shell<cr>
+
+"-- Vim Php Namespace --"
+let g:php_namespace_sort_after_insert = 1
+autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+
+"-- Auto Expansion --"
+inoremap (; (<CR>);<C-c>O
+inoremap (, (<CR>),<C-c>O
+inoremap {; {<CR>};<C-c>O 
+inoremap {, {<CR>},<C-c>O
+inoremap [; [<CR>];<C-c>O
+inoremap [, [<CR>],<C-c>O
+inoremap {<space> {<CR>}<C-c>O
+inoremap {) {<CR>})<C-c>O
+inoremap {<CR> <CR>{<CR>}<C-c>O
+inoremap {); {<CR>});<C-c>O
+inoremap {{<space> {{  }}<C-c>hhha
+inoremap [<space> [<cr>]<C-c>O
+
+"-- Commenting --"
+"xnoremap <Leader>cc ^<C-v>I//<Esc><Esc>
+"nmap <Leader>cc I//<Esc>^
+
+"xnoremap <Leader>cu ^<C-v>lx<Esc>
+"nmap <Leader>cu ^dw
